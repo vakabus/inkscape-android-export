@@ -55,6 +55,8 @@ def export_density(svg, options, qualifier, dpi):
                             "--without-gui",
                             param,
                             "--export-dpi=%s" % dpi,
+							"--export-width=%s" % int(float(options.size) * dpi),
+							"--export-height=%s" % int(float(options.size) * dpi),
                             "--export-png=%s" % png,
                             svg
                           ], stdout=DEVNULL, stderr=subprocess.STDOUT)
@@ -104,14 +106,15 @@ parser.add_option("--source",  action="store", type="choice", choices=('"selecte
 parser.add_option("--id",      action="append", dest="ids", metavar="ID", help="ID attribute of objects to export, can be specified multiple times")
 parser.add_option("--resdir",  action="store",  help="Resources directory")
 parser.add_option("--resname", action="store",  help="Resource name (when --source=page)")
+parser.add_option("--size", action="store", help="size dim.")
 
 group = DensityGroup(parser, "Select which densities to export")
-group.add_density_option("ldpi", 67.5)
-group.add_density_option("mdpi", 90)
-group.add_density_option("hdpi", 135)
-group.add_density_option("xhdpi", 180)
-group.add_density_option("xxhdpi", 270)
-group.add_density_option("xxxhdpi", 360)
+group.add_density_option("mdpi", 1.0)
+group.add_density_option("hdpi", 1.5)
+group.add_density_option("xhdpi", 2.0)
+group.add_density_option("xxhdpi", 3.0)
+group.add_density_option("xxxhdpi", 4.0)
+group.add_density_option("sw720dp-port", 2.0)
 parser.add_option_group(group)
 
 parser.add_option("--strip",  action="store",  type="boolstr", help="Use ImageMagick to reduce the image size")
