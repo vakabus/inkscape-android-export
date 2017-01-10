@@ -60,7 +60,6 @@ def export_density(svg, options, qualifier, dpi):
                             param,
                             "--export-dpi=%s" % dpi,
 							"--export-width=%s" % int(float(options.size) * dpi),
-							"--export-height=%s" % int(float(options.size) * dpi),
                             "--export-png=%s" % png,
                             svg
                           ], stdout=DEVNULL, stderr=subprocess.STDOUT)
